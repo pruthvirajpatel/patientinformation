@@ -1,3 +1,64 @@
+<div class="row m-l-r-0">
+  <h3 class="text-center">Register <a ui-sref="listpatients">Patients List</a> </h3>
+  <form name="form" ng-submit="vm.add()" novalidate>
+
+    <div class="form-group">
+      <label for="firstname">First Name<sup class="red">*</sup></label>
+      <input type="text" name="firstname" id="firstname" class="form-control" ng-model="vm.user.first_name" required/>
+      <span ng-show="form.firstname.$dirty && form.firstname.$error.required" class="help-block">
+      First name is required</span>
+    </div>
+
+    <div class="form-group">
+      <label for="lastname">Last Name<sup class="red">*</sup></label>
+      <input type="text" name="lastname" id="lastname" class="form-control" ng-model="vm.user.last_name" required/>
+      <span ng-show="form.lastname.$dirty && form.lastname.$error.required" class="help-block">
+      Last name is required</span>
+    </div>
+
+    <div class="form-group">
+      <label for="age">Age<sup class="red">*</sup></label>
+      <input type="number" name="age" id="age" class="form-control" ng-model="vm.user.age" required/>
+      <span ng-show="form.age.$dirty && form.age.$error.required" class="help-block">
+      Age is required</span>
+    </div>
+
+    <div class="form-group">
+      <label for="gender">Gender<sup class="red">*</sup></label>
+      <select class="form-control" id="gender" ng-model="vm.user.gender" required>
+        <option ng-repeat="option in vm.genders" value="{{option.id}}">{{option.gender}}</option>
+      </select>
+    </div>
 
 
-<h4 class="text-center">Add Patient</h4>
+    <div class="form-group">
+      <label for="date">Dob</label>
+      <input type="date" name="date" id="date" class="form-control" ng-model="vm.user.dob" required/>
+      <span ng-show="form.date.$dirty && form.date.$error.required" class="help-block">
+      Dob is required</span>
+    </div>
+
+    <div class="form-group">
+      <label for="mobile">Mobile<sup class="red">*</sup></label>
+      <input type="number" name="mobile" id="mobile" class="form-control" ng-model="vm.user.mobile" required ng-pattern="/^[7-9][0-9]{9}$/"
+       ng-minlength=10 ng-maxlength=10 />
+      <span ng-show="form.mobile.$dirty" class="help-block">
+        <span ng-show="form.mobile.$error.required">
+          Mobile number is required
+        </span>
+        <span ng-show="form.mobile.$error.pattern">
+          Mobile number should start 7|8|9 and should of length 10
+        </span>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <label for="text">Text</label>
+      <textarea name="text" id="text" class="form-control" ng-model="vm.user.text"></textarea>
+    </div>
+    <div class="form-actions">
+      <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Submit</button>
+      <button type="button" ng-click="vm.reset();" class="btn btn-primary">Reset</button>
+    </div>
+  </form>
+</div>
